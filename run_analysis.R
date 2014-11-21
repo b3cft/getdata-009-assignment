@@ -20,6 +20,14 @@ run_analysis <- function(all=NULL) {
     # Complete step 2. Extract all the mean() and std() measurements
     # It isn't stated but we must have subject and activity for step 5.
     means_and_stds <- all %>% select(1, 2, contains("mean.."), contains("std.."))
+
+    # Tidy up the column names
+    colnames(means_and_stds) <- gsub("_$", "", gsub("\\.+","\\_",tolower(colnames(means_and_stds))))
+
+    # get the result required for step 5
+    means_and_stds %>%
+        group_by(subject, activity) %>%
+        summarise_each(funs(mean), -subject, -activity)
 }
 
 merge_data <- function () {
