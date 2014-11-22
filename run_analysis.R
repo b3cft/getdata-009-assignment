@@ -10,12 +10,10 @@ require(dplyr)
 
 # Good luck!
 
-run_analysis <- function(all=NULL) {
+run_analysis <- function() {
     # Complete step 1 - merge all the test and train data into
     # one data set. See merge_data() function for more details.
-    if (is.null(all)) {
-        all <- merge_data()
-    }
+    all <- merge_data()
 
     # Complete step 2. Extract all the mean() and std() measurements
     # It isn't stated but we must have subject and activity for step 5.
